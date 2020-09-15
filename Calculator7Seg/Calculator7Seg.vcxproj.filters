@@ -18,10 +18,10 @@
     <ClCompile Include="Calculator7Seg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CalcInput.cpp">
+    <ClCompile Include="Calculator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Calculator.cpp">
+    <ClCompile Include="AsciiGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +29,7 @@
     <ClInclude Include="Calculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CalcInput.h">
+    <ClInclude Include="AsciiGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

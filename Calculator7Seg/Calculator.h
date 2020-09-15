@@ -4,10 +4,9 @@
 class Calculator
 {
 private:
-	calcInput getInput(std::istream&);
-	int calc(int, int, char);
-	void printResult(int);
+	int result;
 
 public:
-	int run()
+	void calc(int, int, char);
+	int getResult();
 };

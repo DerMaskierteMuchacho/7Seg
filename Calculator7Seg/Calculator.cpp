@@ -1,16 +1,22 @@
-#include "Calculation.h"
+#include "Calculator.h"
 
-int Calculator::calc(int a, int b, char operation)
-{
-	switch (operation)
-	{
+void Calculator::calc(int a, int b, char operation) {
+	switch (operation) {
 	case '+':
-		return a + b;
+		this->result = a + b;
+		break;
 	case '-':
-		return a - b;
+		this->result = a - b;
+		break;
 	case '*':
-		return a * b;
+		this->result = a * b;
+		break;
 	case '/':
-		return a / b;
+		this->result = a / b;
+		break;
 	}
+}
+
+int Calculator::getResult() {
+	return this->result;
 }
