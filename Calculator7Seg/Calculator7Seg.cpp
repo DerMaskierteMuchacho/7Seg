@@ -2,37 +2,94 @@
 //
 
 #include <iostream>
+#include <string>
+#include <exception>
+#include <queue>
 #include "Calculator.h"
 #include "AsciiGenerator.h"
 
+
 struct InputData {
-	int firstNumber;
-	int secondNumber;
-	char operation;
+	std::queue<int> number;
+	std::queue<char> operation;
+};
+struct InvalidInputException : public std::exception {
+	const char* what() const throw ()
+	{
+		return "Invalid input!";
+	}
 };
 
+void getInput(InputData &inData, bool running, std::istream &inStream) {
+	std::string in;
+	std::string temp = "";
+	std::getline(inStream, in);
+	in.erase(std::remove_if(in.begin(), in.end(), isspace), in.end());
+	if (!in.compare("exit")) {
+		running = false;
+		return;
+	}
+	else {
+		size_t size = in.length();
+		if (size >= 3) {
+			for (int i = 0; i < size; i++) {
+				if (std::isdigit(in[i])) {
+					temp += in[i];
+				}
+				else {
+					if (temp.length() > 0) {
+						inData.number.push(std::stoi(temp));
+						temp = "";
+					}
+					else
+						throw InvalidInputException();
+					if (in[i] == '+' || in[i] == '-' || in[i] == '*' || in[i] == '/') {
+						inData.operation.push(in[i]);
+					}
+						
+					else
+						throw InvalidInputException();
+				}
+			}
+			if (temp.length() > 0)
+				inData.number.push(std::stoi(temp));
+			return;
+		}
+		// TODO: String zu Zahlen und Operatoren aufteilen und in inData.number und inData.operation einfügen 
+		
+		throw InvalidInputException();
+	}
+	
+}
+
+void pocketcalculator(std::istream &inStream, std::ostream & outStream) {
+	AsciiGenerator asciiGenerator;
+	
+	bool running = true;
+	do {
+		outStream << "Please enter a calculation(+ - * /)\nFor cancel enter 'exit'\n";
+		try{
+			Calculator calculator;
+			InputData inData;
+			getInput(inData, running, inStream);
+			calculator.calc(inData.number, inData.operation);
+			outStream << "Result: ";
+			outStream << std::to_string(calculator.getResult());
+			outStream << "\n";
+		}
+		catch (InvalidInputException& e) {
+			outStream << e.what();
+			running = false;
+		}
+		catch (InvalidCalculationException& e) {
+			outStream << e.what();
+			running = false;
+		}
+			
+	} while (running);
+}
 
 int main()
 {
-	Calculator calculator;
-	AsciiGenerator asciiGenerator;
-	InputData inData;
-	inData.firstNumber = 1;
-	inData.secondNumber = 2;
-	inData.operation = '*';
-
-	calculator.calc(inData.firstNumber, inData.secondNumber, inData.operation);
-
-
+	pocketcalculator(std::cin, std::cout);
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started:
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
