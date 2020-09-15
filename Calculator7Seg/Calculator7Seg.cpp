@@ -71,7 +71,7 @@ void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
 			InputData inData;
 			getInput(inData, running, inStream);
 			calculator.calc(inData.number, inData.operation);
-			outStream << "Result:\n";
+			outStream << "Result: ";
 			outStream << asciiGenerator.intToAsciiString(calculator.getResult());
 			outStream << "\n";
 		}
