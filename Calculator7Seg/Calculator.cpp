@@ -1,6 +1,6 @@
 #include "Calculation.h"
 
-int Calc(int a, int b, char operation)
+int Calculator::calc(int a, int b, char operation)
 {
 	switch (operation)
 	{
