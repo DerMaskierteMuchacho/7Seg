@@ -8,7 +8,6 @@
 #include "Calculator.h"
 #include "AsciiGenerator.h"
 
-
 struct InputData {
 	std::queue<int> number;
 	std::queue<char> operation;
@@ -20,7 +19,7 @@ struct InvalidInputException : public std::exception {
 	}
 };
 
-void getInput(InputData &inData, bool running, std::istream &inStream) {
+void getInput(InputData& inData, bool running, std::istream& inStream) {
 	std::string in;
 	std::string temp = "";
 	std::getline(inStream, in);
@@ -46,7 +45,7 @@ void getInput(InputData &inData, bool running, std::istream &inStream) {
 					if (in[i] == '+' || in[i] == '-' || in[i] == '*' || in[i] == '/') {
 						inData.operation.push(in[i]);
 					}
-						
+
 					else
 						throw InvalidInputException();
 				}
@@ -55,26 +54,25 @@ void getInput(InputData &inData, bool running, std::istream &inStream) {
 				inData.number.push(std::stoi(temp));
 			return;
 		}
-		// TODO: String zu Zahlen und Operatoren aufteilen und in inData.number und inData.operation einfügen 
-		
+		// TODO: String zu Zahlen und Operatoren aufteilen und in inData.number und inData.operation einfügen
+
 		throw InvalidInputException();
 	}
-	
 }
 
-void pocketcalculator(std::istream &inStream, std::ostream & outStream) {
+void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
 	AsciiGenerator asciiGenerator;
-	
+
 	bool running = true;
 	do {
 		outStream << "Please enter a calculation(+ - * /)\nFor cancel enter 'exit'\n";
-		try{
+		try {
 			Calculator calculator;
 			InputData inData;
 			getInput(inData, running, inStream);
 			calculator.calc(inData.number, inData.operation);
 			outStream << "Result: ";
-			outStream << std::to_string(calculator.getResult());
+			outStream << asciiGenerator.intToAsciiString(calculator.getResult());
 			outStream << "\n";
 		}
 		catch (InvalidInputException& e) {
@@ -85,7 +83,6 @@ void pocketcalculator(std::istream &inStream, std::ostream & outStream) {
 			outStream << e.what();
 			running = false;
 		}
-			
 	} while (running);
 }
 
