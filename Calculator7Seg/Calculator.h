@@ -14,9 +14,9 @@ class Calculator
 {
 private:
 	int result;
-	int giveFrontAndPop(std::queue<int> &);
+	int giveFrontAndPop(std::queue<int>&);
 
 public:
-	void calc(std::queue<int> &, std::queue<char> &);
+	void calc(std::queue<int>&, std::queue<char>&);
 	int getResult();
 };

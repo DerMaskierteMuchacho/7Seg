@@ -65,7 +65,7 @@ void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
 
 	bool running = true;
 	do {
-		outStream << "Please enter a calculation(+ - * /)\nFor cancel enter 'exit'\n";
+		outStream << "Please enter a calculation(+ - * /)\nType 'exit' to abort\n";
 		try {
 			Calculator calculator;
 			InputData inData;

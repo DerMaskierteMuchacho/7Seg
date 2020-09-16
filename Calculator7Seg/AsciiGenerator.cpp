@@ -11,6 +11,10 @@ std::string createStringFromArray(std::vector<std::vector<std::string>> array)
 		for (std::vector<std::string> level : array)
 		{
 			output += level[i] + spaceBetweenDigits;
+			if (i != 1 && i != 3)
+			{
+				output += " ";
+			}
 		}
 		output += "\n";
 	}
