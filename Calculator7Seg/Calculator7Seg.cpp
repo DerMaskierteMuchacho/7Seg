@@ -19,14 +19,13 @@ struct InvalidInputException : public std::exception {
 	}
 };
 
-void getInput(InputData& inData, bool running, std::istream& inStream) {
+bool inputToData(InputData& inData, std::istream& inStream) {
 	std::string in;
 	std::string temp = "";
 	std::getline(inStream, in);
 	in.erase(std::remove_if(in.begin(), in.end(), isspace), in.end());
 	if (!in.compare("exit")) {
-		running = false;
-		return;
+		return false;
 	}
 	else {
 		size_t size = in.length();
@@ -52,10 +51,8 @@ void getInput(InputData& inData, bool running, std::istream& inStream) {
 			}
 			if (temp.length() > 0)
 				inData.number.push(std::stoi(temp));
-			return;
+			return true;
 		}
-		// TODO: String zu Zahlen und Operatoren aufteilen und in inData.number und inData.operation einfügen
-
 		throw InvalidInputException();
 	}
 }
@@ -63,27 +60,29 @@ void getInput(InputData& inData, bool running, std::istream& inStream) {
 void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
 	AsciiGenerator asciiGenerator;
 
-	bool running = true;
+	bool isRunning = true;
 	do {
 		outStream << "Please enter a calculation(+ - * /)\nType 'exit' to abort\n";
 		try {
 			Calculator calculator;
 			InputData inData;
-			getInput(inData, running, inStream);
+			isRunning = inputToData(inData, inStream);
 			calculator.calc(inData.number, inData.operation);
 			outStream << "Result: \n";
+			//ToDo: Limit to 8-char
 			outStream << asciiGenerator.intToAsciiString(calculator.getResult());
+			//ToDo: Cute in VS
 			outStream << "\n";
 		}
 		catch (InvalidInputException& e) {
 			outStream << e.what();
-			running = false;
+			isRunning = false;
 		}
 		catch (InvalidCalculationException& e) {
 			outStream << e.what();
-			running = false;
+			isRunning = false;
 		}
-	} while (running);
+	} while (isRunning);
 }
 
 int main()
