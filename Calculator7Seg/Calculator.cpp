@@ -33,6 +33,6 @@ void Calculator::calc(std::queue<int>& number, std::queue<char>& operation) {
 	}
 }
 
-int Calculator::getResult() {
+double Calculator::getResult() {
 	return result;
 }

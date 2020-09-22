@@ -13,10 +13,10 @@ struct InvalidCalculationException : public std::exception {
 class Calculator
 {
 private:
-	int result;
+	double result;
 	int giveFrontAndPop(std::queue<int>&);
 
 public:
 	void calc(std::queue<int>&, std::queue<char>&);
-	int getResult();
+	double getResult();
 };

@@ -9,8 +9,8 @@
 #include "AsciiGenerator.h"
 
 struct InputData {
-	std::queue<int> number;
-	std::queue<char> operation;
+	std::queue<int> number{};
+	std::queue<char> operation{};
 };
 struct InvalidInputException : public std::exception {
 	const char* what() const throw ()
@@ -20,19 +20,19 @@ struct InvalidInputException : public std::exception {
 };
 
 bool inputToData(InputData& inData, std::istream& inStream) {
-	std::string in;
-	std::string temp = "";
-	std::getline(inStream, in);
-	in.erase(std::remove_if(in.begin(), in.end(), isspace), in.end());
-	if (!in.compare("exit")) {
+	std::string inputStr{};
+	std::string temp{""};
+	std::getline(inStream, inputStr);
+	inputStr.erase(std::remove_if(inputStr.begin(), inputStr.end(), isspace), inputStr.end());
+	if (!inputStr.compare("exit")) {
 		return false;
 	}
 	else {
-		size_t size = in.length();
+		size_t size = inputStr.length();
 		if (size >= 3) {
-			for (int i = 0; i < size; i++) {
-				if (std::isdigit(in[i])) {
-					temp += in[i];
+			for (auto charFromInputStr : inputStr) {
+				if (std::isdigit(charFromInputStr)) {
+					temp += charFromInputStr;
 				}
 				else {
 					if (temp.length() > 0) {
@@ -41,10 +41,9 @@ bool inputToData(InputData& inData, std::istream& inStream) {
 					}
 					else
 						throw InvalidInputException();
-					if (in[i] == '+' || in[i] == '-' || in[i] == '*' || in[i] == '/') {
-						inData.operation.push(in[i]);
+					if (charFromInputStr == '+' || charFromInputStr == '-' || charFromInputStr == '*' || charFromInputStr == '/' || charFromInputStr =='^') {
+						inData.operation.push(charFromInputStr);
 					}
-
 					else
 						throw InvalidInputException();
 				}
