@@ -70,12 +70,14 @@ void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
 			Calculator calculator;
 			InputData inData;
 			isRunning = inputToData(inData, inStream);
-			double result = calculator.calc(inData.number, inData.operation);
-			outStream << "Result: \n";
-			//ToDo: Limit to 8-char
-			outStream << asciiGenerator.intToAsciiString(result);
-			//ToDo: Cute in VS
-			outStream << "\n";
+			if (isRunning) {
+				double result = calculator.calc(inData.number, inData.operation);
+				outStream << "Result: \n";
+				//ToDo: Limit to 8-char
+				outStream << asciiGenerator.intToAsciiString(result);
+				//ToDo: Cute in VS
+				outStream << "\n";
+			}
 		}
 		catch (InvalidInputException& e) {
 			outStream << asciiGenerator.getErrorString();
