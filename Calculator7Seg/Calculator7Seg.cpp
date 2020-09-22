@@ -5,8 +5,8 @@
 #include <string>
 #include <exception>
 #include <queue>
-#include "Calculator.h"
-#include "AsciiGenerator.h"
+#include "../Calculator7Lib/AsciiGenerator.h"
+#include "../Calculator7Lib/Calculator.h"
 
 struct InputData {
 	std::queue<int> number{};

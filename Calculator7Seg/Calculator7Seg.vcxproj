@@ -139,13 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AsciiGenerator.cpp" />
-    <ClCompile Include="Calculator.cpp" />
     <ClCompile Include="Calculator7Seg.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AsciiGenerator.h" />
-    <ClInclude Include="Calculator.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Calculator7Lib\Calculator7Lib.vcxproj">

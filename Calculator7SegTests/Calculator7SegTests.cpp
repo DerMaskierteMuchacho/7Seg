@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../Calculator7Seg/Calculator.h"
+#include "../Calculator7Lib/Calculator.h"
 #include <queue>
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
