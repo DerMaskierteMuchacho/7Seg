@@ -13,13 +13,13 @@ namespace Calculator7SegTests
 		/*TEST_METHOD(DivisionByZeroTest)
 		{
 			Calculator calculator;
-			InputData inData;
-			inData.number.push(5);
-			inData.number.push(0);
-			inData.operation.push('/');
+			std::queue<int> hans;
+			hans.push(5);
+			hans.push(0);
+			std::queue<char> ueli;
+			ueli.push('/');
 
-			auto func = [] { calculator.calc(inData.number, inData.operation); };
-			Assert::ExpectException<InvalidCalculationException>(func);
+			Assert::ExpectException<InvalidCalculationException>(calculator.calc(hans, ueli));
 		}*/
 
 		TEST_METHOD(AdditionTest)
@@ -30,9 +30,20 @@ namespace Calculator7SegTests
 			hans.push(3);
 			std::queue<char> ueli;
 			ueli.push('+');
-			calculator.calc(hans, ueli);
 
-			Assert::AreEqual(8.0, (double)calculator.getResult());
+			Assert::AreEqual(8.0, calculator.calc(hans, ueli));
+		}
+
+		TEST_METHOD(ModuloTest)
+		{
+			Calculator calculator;
+			std::queue<int> hans;
+			hans.push(5);
+			hans.push(3);
+			std::queue<char> ueli;
+			ueli.push('%');
+
+			Assert::AreEqual(2.0, calculator.calc(hans, ueli));
 		}
 	};
 }

@@ -36,7 +36,7 @@ std::string AsciiGenerator::intToAsciiString(double input)
 		{
 		case '.':
 		case ',':
-			output.push_back({ empty, empty, empty, empty, barRight });
+			output.push_back({ empty, empty, empty, barRight, empty });
 			break;
 		case '-':
 			output.push_back({ empty, empty, line, empty, empty });
