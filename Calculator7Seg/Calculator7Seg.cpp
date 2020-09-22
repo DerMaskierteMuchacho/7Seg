@@ -21,10 +21,10 @@ struct InvalidInputException : public std::exception {
 
 bool inputToData(InputData& inData, std::istream& inStream) {
 	std::string inputStr{};
-	std::string temp{""};
+	std::string temp{ "" };
 	std::getline(inStream, inputStr);
 	inputStr.erase(std::remove_if(inputStr.begin(), inputStr.end(), isspace), inputStr.end());
-	if (!inputStr.compare("exit")) {
+	if (!inputStr.compare("exit")) { //TODO compare
 		return false;
 	}
 	else {
@@ -41,7 +41,7 @@ bool inputToData(InputData& inData, std::istream& inStream) {
 					}
 					else
 						throw InvalidInputException();
-					if (charFromInputStr == '+' || charFromInputStr == '-' || charFromInputStr == '*' || charFromInputStr == '/' || charFromInputStr =='^') {
+					if (charFromInputStr == '+' || charFromInputStr == '-' || charFromInputStr == '*' || charFromInputStr == '/' || charFromInputStr == '^') {
 						inData.operation.push(charFromInputStr);
 					}
 					else

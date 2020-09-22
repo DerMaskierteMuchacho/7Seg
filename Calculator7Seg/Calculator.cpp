@@ -1,5 +1,6 @@
 #include <queue>
 #include "Calculator.h"
+
 int Calculator::giveFrontAndPop(std::queue<int>& number) {
 	int n = number.front();
 	number.pop();
@@ -30,6 +31,8 @@ void Calculator::calc(std::queue<int>& number, std::queue<char>& operation) {
 			throw InvalidCalculationException();
 		}
 		operation.pop();
+
+		//TODO modulo
 	}
 }
 

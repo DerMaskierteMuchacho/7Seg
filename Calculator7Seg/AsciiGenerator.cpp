@@ -20,7 +20,7 @@ std::string createStringFromArray(std::vector<std::vector<std::string>> array)
 
 std::string AsciiGenerator::intToAsciiString(int input)
 {
-	std::vector<std::vector<std::string>> output;
+	std::vector<std::vector<std::string>> output; //list<string[]>
 	std::string inputAsString = std::to_string(input);
 
 	std::string empty = "    ";
