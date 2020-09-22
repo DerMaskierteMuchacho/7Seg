@@ -2,10 +2,17 @@
 #include <string>
 #include <vector>
 
-std::string createStringFromArray(std::vector<std::vector<std::string>> array)
+std::string const empty = "    ";
+std::string const line = " -- ";
+std::string const bar = "|  |";
+std::string const barLeft = "|   ";
+std::string const barRight = "   |";
+std::string const spaceBetweenDigits = "  ";
+
+std::string AsciiGenerator::createStringFromArray(std::vector<std::vector<std::string>> array)
 {
 	std::string output;
-	std::string spaceBetweenDigits = "  ";
+
 	for (int i = 0; i < 5; i++)
 	{
 		for (std::vector<std::string> level : array)
@@ -18,21 +25,19 @@ std::string createStringFromArray(std::vector<std::vector<std::string>> array)
 	return output;
 }
 
-std::string AsciiGenerator::intToAsciiString(int input)
+std::string AsciiGenerator::intToAsciiString(double input)
 {
 	std::vector<std::vector<std::string>> output; //list<string[]>
 	std::string inputAsString = std::to_string(input);
-
-	std::string empty = "    ";
-	std::string line = " -- ";
-	std::string bar = "|  |";
-	std::string barLeft = "|   ";
-	std::string barRight = "   |";
 
 	for (char digit : inputAsString)
 	{
 		switch (digit)
 		{
+		case '.':
+		case ',':
+			output.push_back({ empty, empty, empty, empty, barRight });
+			break;
 		case '-':
 			output.push_back({ empty, empty, line, empty, empty });
 			break;
@@ -68,6 +73,16 @@ std::string AsciiGenerator::intToAsciiString(int input)
 			break;
 		}
 	}
+
+	return createStringFromArray(output);
+}
+
+std::string AsciiGenerator::getErrorString()
+{
+	std::vector<std::string> e{ line, barLeft, line, barLeft, line };
+	std::vector<std::string> r{ line, bar,line, bar, empty };
+	std::vector<std::string> o{ line, bar, empty, bar, line };
+	std::vector<std::vector<std::string>> output{ e,r,r,o,r };
 
 	return createStringFromArray(output);
 }
