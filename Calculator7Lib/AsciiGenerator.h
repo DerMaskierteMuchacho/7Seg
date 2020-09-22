@@ -3,4 +3,5 @@
 class AsciiGenerator {
 public:
 	std::string intToAsciiString(int);
+	std::string getErrorString();
 };

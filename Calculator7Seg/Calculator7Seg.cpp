@@ -24,7 +24,7 @@ bool inputToData(InputData& inData, std::istream& inStream) {
 	std::string temp{ "" };
 	std::getline(inStream, inputStr);
 	inputStr.erase(std::remove_if(inputStr.begin(), inputStr.end(), isspace), inputStr.end());
-	if (!inputStr.compare("exit")) { //TODO compare
+	if (inputStr.compare("exit")==0) { //TODO compare
 		return false;
 	}
 	else {
@@ -41,7 +41,12 @@ bool inputToData(InputData& inData, std::istream& inStream) {
 					}
 					else
 						throw InvalidInputException();
-					if (charFromInputStr == '+' || charFromInputStr == '-' || charFromInputStr == '*' || charFromInputStr == '/' || charFromInputStr == '^') {
+					if (charFromInputStr == '+' || 
+						charFromInputStr == '-' || 
+						charFromInputStr == '*' || 
+						charFromInputStr == '/' || 
+						charFromInputStr == '^' ||
+						charFromInputStr == '%') {
 						inData.operation.push(charFromInputStr);
 					}
 					else
@@ -57,29 +62,28 @@ bool inputToData(InputData& inData, std::istream& inStream) {
 }
 
 void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
-	AsciiGenerator asciiGenerator;
-
 	bool isRunning = true;
 	do {
-		outStream << "Please enter a calculation(+ - * /)\nType 'exit' to abort\n";
+		AsciiGenerator asciiGenerator;
+		outStream << "Please enter a calculation(+ - * / %)\nType 'exit' to abort\n";
 		try {
 			Calculator calculator;
 			InputData inData;
 			isRunning = inputToData(inData, inStream);
-			calculator.calc(inData.number, inData.operation);
+			double result = calculator.calc(inData.number, inData.operation);
 			outStream << "Result: \n";
 			//ToDo: Limit to 8-char
-			outStream << asciiGenerator.intToAsciiString(calculator.getResult());
+			outStream << asciiGenerator.intToAsciiString(result);
 			//ToDo: Cute in VS
 			outStream << "\n";
 		}
 		catch (InvalidInputException& e) {
-			outStream << e.what();
-			isRunning = false;
+			outStream << asciiGenerator.getErrorString();
+			//isRunning = false;
 		}
 		catch (InvalidCalculationException& e) {
-			outStream << e.what();
-			isRunning = false;
+			outStream << asciiGenerator.getErrorString();
+			//isRunning = false;
 		}
 	} while (isRunning);
 }

@@ -1,7 +1,9 @@
 #include "AsciiGenerator.h"
 #include <string>
 #include <vector>
-
+std::string AsciiGenerator::getErrorString() {
+	return "";
+}
 std::string createStringFromArray(std::vector<std::vector<std::string>> array)
 {
 	std::string output;

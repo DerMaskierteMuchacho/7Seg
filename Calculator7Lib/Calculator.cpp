@@ -6,12 +6,12 @@ int Calculator::giveFrontAndPop(std::queue<int>& number) {
 	number.pop();
 	return n;
 }
-void Calculator::calc(std::queue<int>& number, std::queue<char>& operation) {
+double Calculator::calc(std::queue<int>& number, std::queue<char>& operation) {
 	if (operation.size() < 1)
 		throw InvalidCalculationException();
 	if (number.size() == operation.size() - 1)
 		throw InvalidCalculationException();
-	result = giveFrontAndPop(number);
+	double result = giveFrontAndPop(number);
 	while (!operation.empty()) {
 		switch (operation.front()) {
 		case '+':
@@ -27,15 +27,14 @@ void Calculator::calc(std::queue<int>& number, std::queue<char>& operation) {
 			if (number.front() == 0) throw InvalidCalculationException();
 			result /= giveFrontAndPop(number);
 			break;
+		case '%':
+			if (number.front() == 0) throw InvalidCalculationException();
+			result = (int)result % giveFrontAndPop(number);
+			break;
 		default:
 			throw InvalidCalculationException();
 		}
 		operation.pop();
-
-		//TODO modulo
 	}
-}
-
-double Calculator::getResult() {
 	return result;
 }
