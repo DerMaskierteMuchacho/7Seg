@@ -80,8 +80,8 @@ std::string AsciiGenerator::intToAsciiString(double input)
 std::string AsciiGenerator::getErrorString()
 {
 	std::vector<std::string> e{ line, barLeft, line, barLeft, line };
-	std::vector<std::string> r{ line, bar,line, bar, empty };
-	std::vector<std::string> o{ line, bar, empty, bar, line };
+	std::vector<std::string> r{ empty, empty, line, barLeft, empty };
+	std::vector<std::string> o{ empty, empty, line, bar, line };
 	std::vector<std::vector<std::string>> output{ e,r,r,o,r };
 
 	return createStringFromArray(output);
