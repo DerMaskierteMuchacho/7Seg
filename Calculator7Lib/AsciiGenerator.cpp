@@ -28,9 +28,8 @@ std::string AsciiGenerator::createStringFromArray(std::vector<std::vector<std::s
 std::string AsciiGenerator::intToAsciiString(std::string input)
 {
 	std::vector<std::vector<std::string>> output; //list<string[]>
-	std::string inputAsString = input;
 
-	for (char digit : inputAsString)
+	for (char digit : input)
 	{
 		switch (digit)
 		{
@@ -80,8 +79,8 @@ std::string AsciiGenerator::intToAsciiString(std::string input)
 std::string AsciiGenerator::getErrorString()
 {
 	std::vector<std::string> e{ line, barLeft, line, barLeft, line };
-	std::vector<std::string> r{ line, bar,line, bar, empty };
-	std::vector<std::string> o{ line, bar, empty, bar, line };
+	std::vector<std::string> r{ empty, empty, line, barLeft, empty };
+	std::vector<std::string> o{ empty, empty, line, bar, line };
 	std::vector<std::vector<std::string>> output{ e,r,r,o,r };
 
 	return createStringFromArray(output);
