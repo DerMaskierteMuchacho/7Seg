@@ -5,13 +5,13 @@
 #include <string>
 #include <exception>
 #include <queue>
+#include <regex>
 #include "../Calculator7Lib/AsciiGenerator.h"
 #include "../Calculator7Lib/Calculator.h"
+#include "../Calculator7Lib/Calculator.cpp"
 
-struct InputData {
-	std::queue<double> number{};
-	std::queue<char> operation{};
-};
+bool const __DEBUG = true;
+
 struct InvalidInputException : public std::exception {
 	const char* what() const throw ()
 	{
@@ -19,46 +19,35 @@ struct InvalidInputException : public std::exception {
 	}
 };
 
-bool inputToData(InputData& inData, std::istream& inStream) {
+bool inputToData(CalcData& inData, std::istream& inStream) {
 	std::string inputStr{};
-	std::string temp{ "" };
 	std::getline(inStream, inputStr);
-	inputStr.erase(std::remove_if(inputStr.begin(), inputStr.end(), isspace), inputStr.end());
-	if (inputStr.compare("exit")==0) { //TODO compare
+	if (inputStr.compare("exit") == 0)
+	{
 		return false;
 	}
-	else {
-		size_t size = inputStr.length();
-		if (size >= 3) {
-			for (auto charFromInputStr : inputStr) {
-				if (std::isdigit(charFromInputStr)) {
-					temp += charFromInputStr;
-				}
-				else {
-					if (temp.length() > 0) {
-						inData.number.push(std::stoi(temp));
-						temp = "";
-					}
-					else
-						throw InvalidInputException();
-					if (charFromInputStr == '+' || 
-						charFromInputStr == '-' || 
-						charFromInputStr == '*' || 
-						charFromInputStr == '/' || 
-						charFromInputStr == '^' ||
-						charFromInputStr == '%') {
-						inData.operation.push(charFromInputStr);
-					}
-					else
-						throw InvalidInputException();
-				}
-			}
-			if (temp.length() > 0)
-				inData.number.push(std::stod(temp));
-			return true;
-		}
+	std::regex basic_regex("([-]?([0-9]*[.,])?[0-9]+)[ ]*([\\+\\*\\/\\-\\%])[ ]*([-]?([0-9]*[.,])?[0-9]+)");
+	std::smatch regexMatching;
+	bool match = std::regex_search(inputStr, regexMatching, basic_regex);
+
+	if (__DEBUG)
+	{
+		std::cout << "Group 1: " + regexMatching.str(0) + "\n";
+		std::cout << "Group 2: " + regexMatching.str(1) + "\n";
+		std::cout << "Group 3: " + regexMatching.str(2) + "\n";
+		std::cout << "Group 4: " + regexMatching.str(3) + "\n";
+		std::cout << "Group 5: " + regexMatching.str(4) + "\n";
+		std::cout << "Group 6: " + regexMatching.str(5) + "\n";
+	}
+	if (!match) {
 		throw InvalidInputException();
 	}
+
+	inData.number.push(std::stod(regexMatching.str(1)));
+	inData.number.push(std::stod(regexMatching.str(4)));
+	inData.operation.push(regexMatching.str(3)[0]);
+
+	return true;
 }
 
 void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
@@ -68,10 +57,10 @@ void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
 		outStream << "Please enter a calculation(+ - * / %)\nType 'exit' to abort\n";
 		try {
 			Calculator calculator;
-			InputData inData;
+			CalcData inData;
 			isRunning = inputToData(inData, inStream);
 			if (isRunning) {
-				double result = calculator.calc(inData.number, inData.operation);
+				double result = calculator.calc(inData);
 				outStream << "Result: \n";
 				outStream << asciiGenerator.intToAsciiString(calculator.limitTo8(result));
 				outStream << "\n";

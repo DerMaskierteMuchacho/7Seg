@@ -1,52 +1,150 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include "../Calculator7Seg/Calculator7Seg.cpp"
 #include "../Calculator7Lib/Calculator.h"
 #include <queue>
+#include <sstream>
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace Calculator7SegTests
 {
 	TEST_CLASS(Calculator7SegTests)
 	{
+	private:
+		bool compareDatastruct(struct CalcData d1, struct CalcData d2) {
+			while (!d1.number.empty()) {
+				double n1 = d1.number.front();
+				if (!(n1 == d2.number.front())) return false;
+				d1.number.pop();
+				d2.number.pop();
+			}
+			if (d2.number.size() != 0) return false;
+			while (!d1.operation.empty()) {
+				char c1 = d1.operation.front();
+				if (!(c1 == d2.operation.front())) return false;
+				d1.operation.pop();
+				d2.operation.pop();
+			}
+			if (d2.operation.size() != 0) return false;
+			return true;
+		}
 	public:
-		/*
-		TEST_METHOD(DivisionByZeroTest)
+
+		TEST_METHOD(inputToData_addition)
 		{
-			Calculator calculator;
-			std::queue<int> operands;
-			operands.push(5);
-			operands.push(0);
-			std::queue<char> operators;
-			operators.push('/');
+			struct CalcData data {};
+			struct CalcData testData {};
+			testData.number.push(5);
+			testData.number.push(5);
+			testData.operation.push('+');
+			std::istringstream input{ "5+5" };
 
-			//void (*calculator.calc)(int);
-			//foo = &my_int_func;
-
-			Assert::ExpectException<InvalidCalculationException>(calculator.calc(operands, operators));
-		}*/
-
-		TEST_METHOD(AdditionTest)
-		{
-			Calculator calculator;
-			std::queue<double> operands;
-			operands.push(5);
-			operands.push(3);
-			std::queue<char> operators;
-			operators.push('+');
-
-			Assert::AreEqual(8.0, calculator.calc(operands, operators));
+			inputToData(data, input);
+			Assert::IsTrue(compareDatastruct(data, testData));
 		}
 
-		TEST_METHOD(ModuloTest)
+		TEST_METHOD(inputToData_subtraction)
 		{
-			Calculator calculator;
-			std::queue<double> operands;
-			operands.push(5);
-			operands.push(3);
-			std::queue<char> operators;
-			operators.push('%');
+			struct CalcData data {};
+			struct CalcData testData {};
+			testData.number.push(5);
+			testData.number.push(5);
+			testData.operation.push('-');
+			std::istringstream input{ "5-5" };
 
-			Assert::AreEqual(2.0, calculator.calc(operands, operators));
+			inputToData(data, input);
+			Assert::IsTrue(compareDatastruct(data, testData));
+		}
+
+		TEST_METHOD(inputToData_muliplication)
+		{
+			struct CalcData data {};
+			struct CalcData testData {};
+			testData.number.push(5);
+			testData.number.push(5);
+			testData.operation.push('*');
+			std::istringstream input{ "5*5" };
+
+			inputToData(data, input);
+			Assert::IsTrue(compareDatastruct(data, testData));
+		}
+
+		TEST_METHOD(inputToData_division)
+		{
+			struct CalcData data {};
+			struct CalcData testData {};
+			testData.number.push(5);
+			testData.number.push(5);
+			testData.operation.push('/');
+			std::istringstream input{ "5/5" };
+
+			inputToData(data, input);
+			Assert::IsTrue(compareDatastruct(data, testData));
+		}
+
+		TEST_METHOD(inputToData_modulo)
+		{
+			struct CalcData data {};
+			struct CalcData testData {};
+			testData.number.push(5);
+			testData.number.push(5);
+			testData.operation.push('+');
+			std::istringstream input{ "5+5" };
+
+			inputToData(data, input);
+			Assert::IsTrue(compareDatastruct(data, testData));
+		}
+
+		TEST_METHOD(inputToData_floatingPoint)
+		{
+			struct CalcData data {};
+			struct CalcData testData {};
+			testData.number.push(5.555);
+			testData.number.push(5.55);
+			testData.operation.push('+');
+			std::istringstream input{ "5.555+5.55" };
+
+			inputToData(data, input);
+			Assert::IsTrue(compareDatastruct(data, testData));
+		}
+
+		TEST_METHOD(inputToData_whiteSpaces)
+		{
+			struct CalcData data {};
+			struct CalcData testData {};
+			testData.number.push(5);
+			testData.number.push(5);
+			testData.operation.push('+');
+			std::istringstream input{ "     5          +     5         " };
+
+			inputToData(data, input);
+			Assert::IsTrue(compareDatastruct(data, testData));
+		}
+
+		TEST_METHOD(inputToData_returnCorrectInput)
+		{
+			struct CalcData data {};
+			std::istringstream input{ "5+5" };
+			Assert::IsTrue(inputToData(data, input));
+		}
+
+		TEST_METHOD(inputToData_returnExit)
+		{
+			struct CalcData data {};
+			std::istringstream input{ "exit" };
+			Assert::IsFalse(inputToData(data, input));
+		}
+		TEST_METHOD(inputToData_exception)
+		{
+			struct CalcData data {};
+			std::istringstream input{ "Hello World!!!" };
+			try {
+				inputToData(data, input);
+				Assert::Fail();
+			}
+			catch (InvalidInputException& e) {
+				Assert::IsTrue(true);
+			}
 		}
 	};
 }
