@@ -2,6 +2,7 @@
 #include <iosfwd>
 #include <exception>
 #include <queue>
+#include <string>
 
 struct InvalidCalculationException : public std::exception {
 	const char* what() const throw ()
@@ -13,8 +14,9 @@ struct InvalidCalculationException : public std::exception {
 class Calculator
 {
 private:
-	int giveFrontAndPop(std::queue<int>&);
+	int giveFrontAndPop(std::queue<double>&);
 
 public:
-	double calc(std::queue<int>&, std::queue<char>&);
+	double calc(std::queue<double>&, std::queue<char>&);
+	std::string limitTo8(double const);
 };

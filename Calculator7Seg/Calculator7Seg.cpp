@@ -9,7 +9,7 @@
 #include "../Calculator7Lib/Calculator.h"
 
 struct InputData {
-	std::queue<int> number{};
+	std::queue<double> number{};
 	std::queue<char> operation{};
 };
 struct InvalidInputException : public std::exception {
@@ -54,7 +54,7 @@ bool inputToData(InputData& inData, std::istream& inStream) {
 				}
 			}
 			if (temp.length() > 0)
-				inData.number.push(std::stoi(temp));
+				inData.number.push(std::stod(temp));
 			return true;
 		}
 		throw InvalidInputException();
@@ -73,9 +73,7 @@ void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
 			if (isRunning) {
 				double result = calculator.calc(inData.number, inData.operation);
 				outStream << "Result: \n";
-				//ToDo: Limit to 8-char
-				outStream << asciiGenerator.intToAsciiString(result);
-				//ToDo: Cute in VS
+				outStream << asciiGenerator.intToAsciiString(calculator.limitTo8(result));
 				outStream << "\n";
 			}
 		}

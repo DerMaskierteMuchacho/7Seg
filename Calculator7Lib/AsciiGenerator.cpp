@@ -25,10 +25,10 @@ std::string AsciiGenerator::createStringFromArray(std::vector<std::vector<std::s
 	return output;
 }
 
-std::string AsciiGenerator::intToAsciiString(double input)
+std::string AsciiGenerator::intToAsciiString(std::string input)
 {
 	std::vector<std::vector<std::string>> output; //list<string[]>
-	std::string inputAsString = std::to_string(input);
+	std::string inputAsString = input;
 
 	for (char digit : inputAsString)
 	{
