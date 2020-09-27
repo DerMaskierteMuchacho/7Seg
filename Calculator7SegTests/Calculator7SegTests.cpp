@@ -145,6 +145,8 @@ namespace Calculator7SegTests
 			catch (InvalidInputException& e) {
 				Assert::IsTrue(true);
 			}
+			//does not work
+			//Assert::ExpectException<InvalidInputException>(inputToData(data, input));
 		}
 	};
 }

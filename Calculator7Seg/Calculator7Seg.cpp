@@ -10,7 +10,7 @@
 #include "../Calculator7Lib/Calculator.h"
 #include "../Calculator7Lib/Calculator.cpp"
 
-bool const __DEBUG = true;
+bool const __DEBUG = false;
 
 struct InvalidInputException : public std::exception {
 	const char* what() const throw ()

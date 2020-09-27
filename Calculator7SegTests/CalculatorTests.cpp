@@ -94,5 +94,26 @@ namespace Calculator7SegTests
 
 			Assert::AreEqual(2.0, calculator.calc(data));
 		}
+
+		TEST_METHOD(LimitLong)
+		{
+			Calculator calculator;
+			Assert::AreEqual(8, (int)calculator.limitTo8(9999999999).length());
+		}
+		TEST_METHOD(LimitShort)
+		{
+			Calculator calculator;
+			Assert::AreEqual(8, (int)calculator.limitTo8(880).length());
+		}
+		TEST_METHOD(LimitFloat)
+		{
+			Calculator calculator;
+			Assert::AreEqual(8, (int)calculator.limitTo8(99.454534545).length());
+		}
+		TEST_METHOD(LimitNegativeDouble)
+		{
+			Calculator calculator;
+			Assert::AreEqual(8, (int)calculator.limitTo8(-99.454534545).length());
+		}
 	};
 }
