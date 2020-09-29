@@ -14,8 +14,7 @@ namespace Calculator7SegTests
 		TEST_METHOD(IntegerOutputTest)
 		{
 			AsciiGenerator generator;
-			auto result = generator.intToAsciiString("8");
-			Assert::AreEqual(0, result.compare(" --   \n|  |  \n --   \n|  |  \n --   \n"));
+			Assert::AreEqual(0, generator.intToAsciiString("8").compare(" --   \n|  |  \n --   \n|  |  \n --   \n"));
 		}
 
 		TEST_METHOD(DoubleOutputTest)
@@ -28,8 +27,6 @@ namespace Calculator7SegTests
 		TEST_METHOD(BigNumberTest)
 		{
 			AsciiGenerator generator;
-			auto result = generator.intToAsciiString("12345.67890");
-
 			Assert::AreEqual(0, generator.intToAsciiString("12345.67890").compare("       --    --          --          --    --    --    --    --   \n   |     |     |  |  |  |           |        |  |  |  |  |  |  |  \n       --    --    --    --          --          --    --         \n   |  |        |     |     |     |  |  |     |  |  |     |  |  |  \n       --    --          --          --          --    --    --   \n"));
 
 			/*
@@ -63,6 +60,31 @@ namespace Calculator7SegTests
 			Assert::AreEqual(0, generator.intToAsciiString("7").compare(" --   \n   |  \n      \n   |  \n      \n"));
 			Assert::AreEqual(0, generator.intToAsciiString("8").compare(" --   \n|  |  \n --   \n|  |  \n --   \n"));
 			Assert::AreEqual(0, generator.intToAsciiString("9").compare(" --   \n|  |  \n --   \n   |  \n --   \n"));
+		}
+
+		TEST_METHOD(ErrorStringTest)
+		{
+			AsciiGenerator generator;
+			auto a = generator.getErrorString();
+			Assert::AreEqual(0, generator.getErrorString().compare(" --                           \n|                             \n --    --    --    --    --   \n|     |     |     |  |  |     \n --                --         \n"));
+		}
+
+		TEST_METHOD(ExceptionTest)
+		{
+			AsciiGenerator generator;
+			try
+			{
+				auto result = generator.intToAsciiString("ASDF");
+				Assert::Fail();
+			}
+			catch (InvalidStringException ex)
+			{
+				Assert::IsTrue(true);
+			}
+			catch (...)
+			{
+				Assert::IsTrue(false);
+			}
 		}
 	};
 }

@@ -66,6 +66,10 @@ void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
 				outStream << "\n";
 			}
 		}
+		catch (InvalidStringException& e)
+		{
+			outStream << asciiGenerator.getErrorString();
+		}
 		catch (InvalidInputException& e) {
 			outStream << asciiGenerator.getErrorString();
 			//isRunning = false;

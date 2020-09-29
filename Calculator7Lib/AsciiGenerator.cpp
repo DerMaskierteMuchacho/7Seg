@@ -70,6 +70,8 @@ std::string AsciiGenerator::intToAsciiString(std::string input)
 		case '9':
 			output.push_back({ line, bar, line, barRight, line });
 			break;
+		default:
+			throw InvalidStringException();
 		}
 	}
 
