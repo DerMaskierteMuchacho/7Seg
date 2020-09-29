@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AsciiGeneratorTests.cpp" />
     <ClCompile Include="Calculator7SegTests.cpp" />
     <ClCompile Include="CalculatorTests.cpp" />
     <ClCompile Include="pch.cpp">
@@ -166,6 +167,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AsciiGeneratorTests.h" />
     <ClInclude Include="Calculator7SegTests.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

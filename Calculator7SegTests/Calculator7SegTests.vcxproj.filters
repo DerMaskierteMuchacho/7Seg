@@ -24,12 +24,18 @@
     <ClCompile Include="Calculator7SegTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AsciiGeneratorTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Calculator7SegTests.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AsciiGeneratorTests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
