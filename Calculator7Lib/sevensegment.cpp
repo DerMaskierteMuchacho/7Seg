@@ -1,4 +1,4 @@
-#include "AsciiGenerator.h"
+#include "sevensegment.h"
 #include <string>
 #include <vector>
 

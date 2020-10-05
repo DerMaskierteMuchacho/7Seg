@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../Calculator7Lib/AsciiGenerator.h"
+#include "../Calculator7Lib/sevensegment.h"
 #include <queue>
 #include <sstream>
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

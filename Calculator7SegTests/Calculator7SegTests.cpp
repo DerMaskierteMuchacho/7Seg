@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../Calculator7Seg/Calculator7Seg.cpp"
-#include "../Calculator7Lib/Calculator.h"
+#include "../Calculator7Lib/pocketcalculator.cpp"
+#include "../Calculator7Lib/calc.h"
 #include <queue>
 #include <sstream>
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;

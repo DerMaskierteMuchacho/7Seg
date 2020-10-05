@@ -1,5 +1,5 @@
 #include <queue>
-#include "Calculator.h"
+#include "calc.h"
 #include <string>
 #include <sstream>
 #include <iomanip>

@@ -151,15 +151,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AsciiGenerator.h" />
-    <ClInclude Include="Calculator.h" />
+    <ClInclude Include="pocketcalculator.h" />
+    <ClInclude Include="sevensegment.h" />
+    <ClInclude Include="calc.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AsciiGenerator.cpp" />
-    <ClCompile Include="Calculator.cpp" />
-    <ClCompile Include="Calculator7Lib.cpp" />
+    <ClCompile Include="sevensegment.cpp" />
+    <ClCompile Include="calc.cpp" />
+    <ClCompile Include="pocketcalculator.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

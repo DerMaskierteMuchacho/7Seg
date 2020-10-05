@@ -1,14 +1,12 @@
-// Calculator7Seg.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <string>
 #include <exception>
 #include <queue>
 #include <regex>
-#include "../Calculator7Lib/AsciiGenerator.h"
-#include "../Calculator7Lib/Calculator.h"
-#include "../Calculator7Lib/Calculator.cpp"
+#include "pocketcalculator.h"
+#include "../Calculator7Lib/sevensegment.h"
+#include "../Calculator7Lib/calc.h"
+#include "../Calculator7Lib/calc.cpp"
 
 bool const __DEBUG = false;
 
@@ -66,22 +64,17 @@ void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
 				outStream << "\n";
 			}
 		}
-		catch (InvalidStringException& e)
+		catch (InvalidStringException&)
 		{
 			outStream << asciiGenerator.getErrorString();
 		}
-		catch (InvalidInputException& e) {
+		catch (InvalidInputException&) {
 			outStream << asciiGenerator.getErrorString();
 			//isRunning = false;
 		}
-		catch (InvalidCalculationException& e) {
+		catch (InvalidCalculationException&) {
 			outStream << asciiGenerator.getErrorString();
 			//isRunning = false;
 		}
 	} while (isRunning);
-}
-
-int main()
-{
-	pocketcalculator(std::cin, std::cout);
 }

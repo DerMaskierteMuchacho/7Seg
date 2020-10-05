@@ -21,24 +21,27 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Calculator.h">
+    <ClInclude Include="sevensegment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="AsciiGenerator.h">
+    <ClInclude Include="calc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pocketcalculator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Calculator7Lib.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Calculator.cpp">
+    <ClCompile Include="calc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AsciiGenerator.cpp">
+    <ClCompile Include="pocketcalculator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sevensegment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
