@@ -18,9 +18,9 @@ struct InvalidCalculationException : public std::exception {
 class Calculator
 {
 private:
-	double giveFrontAndPop(std::queue<double>&);
+	double giveFrontAndPop(std::queue<double>&) const;
 
 public:
-	double calc(struct CalcData&);
-	std::string limitTo8(double const);
+	double calc(struct CalcData&) const;
+	std::string limitTo8(double const) const;
 };

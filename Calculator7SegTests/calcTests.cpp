@@ -22,7 +22,7 @@ namespace Calculator7SegTests
 				calculator.calc(data);
 				Assert::Fail();
 			}
-			catch (InvalidCalculationException& e) {
+			catch (InvalidCalculationException&) {
 				Assert::IsTrue(true);
 			}
 

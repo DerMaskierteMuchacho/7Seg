@@ -1,21 +1,14 @@
+#include "pocketcalculator.h"
+#include "../Calculator7Lib/sevensegment.h"
+#include "../Calculator7Lib/calc.h"
+
 #include <iostream>
 #include <string>
 #include <exception>
 #include <queue>
 #include <regex>
-#include "pocketcalculator.h"
-#include "../Calculator7Lib/sevensegment.h"
-#include "../Calculator7Lib/calc.h"
-#include "../Calculator7Lib/calc.cpp"
 
 bool const __DEBUG = false;
-
-struct InvalidInputException : public std::exception {
-	const char* what() const throw ()
-	{
-		return "Invalid input!";
-	}
-};
 
 bool inputToData(CalcData& inData, std::istream& inStream) {
 	std::string inputStr{};
@@ -64,8 +57,7 @@ void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
 				outStream << "\n";
 			}
 		}
-		catch (InvalidStringException&)
-		{
+		catch (InvalidStringException&) {
 			outStream << asciiGenerator.getErrorString();
 		}
 		catch (InvalidInputException&) {

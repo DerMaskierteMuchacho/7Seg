@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../Calculator7Lib/pocketcalculator.cpp"
+#include "../Calculator7Lib/pocketcalculator.h"
 #include "../Calculator7Lib/calc.h"
 #include <queue>
 #include <sstream>
@@ -142,7 +142,7 @@ namespace Calculator7SegTests
 				inputToData(data, input);
 				Assert::Fail();
 			}
-			catch (InvalidInputException& e) {
+			catch (InvalidInputException&) {
 				Assert::IsTrue(true);
 			}
 			//does not work

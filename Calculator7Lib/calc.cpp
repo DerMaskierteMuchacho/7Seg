@@ -1,15 +1,15 @@
-#include <queue>
 #include "calc.h"
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <queue>
 
-double Calculator::giveFrontAndPop(std::queue<double>& number) {
+double Calculator::giveFrontAndPop(std::queue<double>& number) const {
 	double n = number.front();
 	number.pop();
 	return n;
 }
-double Calculator::calc(struct CalcData& data) {
+double Calculator::calc(struct CalcData& data) const {
 	if (data.operation.size() < 1)
 		throw InvalidCalculationException();
 	if (data.number.size() == data.operation.size() - 1)
@@ -42,18 +42,6 @@ double Calculator::calc(struct CalcData& data) {
 	return result;
 }
 
-std::string Calculator::limitTo8(double const number) {
-	/*std::ostringstream outStrStream;
-	outStrStream.setf(std::ios::fixed);
-	outStrStream << std::setprecision(0) << number;
-	int length = outStrStream.str().length();
-
-	std::ostringstream outStrStream2;
-	outStrStream2.setf(std::ios::fixed);
-	outStrStream2 << std::setprecision((length <= 8) ? 8 - length : 0) << number;
-	return outStrStream2.str().substr(0, 8);*/
-
-	//std::string numberString = std::to_string(number);
-
+std::string Calculator::limitTo8(double const number) const {
 	return std::to_string(number).substr(0, 8);
 }

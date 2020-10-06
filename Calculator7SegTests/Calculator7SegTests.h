@@ -2,4 +2,3 @@
 class Calculator7SegTests
 {
 };
-

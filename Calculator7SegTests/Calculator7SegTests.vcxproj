@@ -156,9 +156,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AsciiGeneratorTests.cpp" />
-    <ClCompile Include="Calculator7SegTests.cpp" />
-    <ClCompile Include="CalculatorTests.cpp" />
+    <ClCompile Include="sevensegmentTests.cpp" />
+    <ClCompile Include="pocketcalculatorTests.cpp" />
+    <ClCompile Include="calcTests.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

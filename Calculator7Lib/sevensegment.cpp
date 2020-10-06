@@ -9,7 +9,7 @@ std::string const barLeft = "|   ";
 std::string const barRight = "   |";
 std::string const spaceBetweenDigits = "  ";
 
-std::string AsciiGenerator::createStringFromArray(std::vector<std::vector<std::string>> array)
+std::string AsciiGenerator::createStringFromArray(std::vector<std::vector<std::string>> array) const
 {
 	std::string output;
 
@@ -25,7 +25,7 @@ std::string AsciiGenerator::createStringFromArray(std::vector<std::vector<std::s
 	return output;
 }
 
-std::string AsciiGenerator::intToAsciiString(std::string input)
+std::string AsciiGenerator::intToAsciiString(std::string input) const
 {
 	std::vector<std::vector<std::string>> output; //list<string[]>
 
@@ -78,7 +78,7 @@ std::string AsciiGenerator::intToAsciiString(std::string input)
 	return createStringFromArray(output);
 }
 
-std::string AsciiGenerator::getErrorString()
+std::string AsciiGenerator::getErrorString() const
 {
 	std::vector<std::string> e{ line, barLeft, line, barLeft, line };
 	std::vector<std::string> r{ empty, empty, line, barLeft, empty };
