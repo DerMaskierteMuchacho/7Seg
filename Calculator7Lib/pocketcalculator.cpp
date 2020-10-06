@@ -53,7 +53,7 @@ void pocketcalculator(std::istream& inStream, std::ostream& outStream) {
 			if (isRunning) {
 				double result = calculator.calc(inData);
 				outStream << "Result: \n";
-				outStream << asciiGenerator.intToAsciiString(calculator.limitTo8(result));
+				outStream << asciiGenerator.numberStringToAsciiString(calculator.roundToPercision2(result));
 				outStream << "\n";
 			}
 		}

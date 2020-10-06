@@ -25,6 +25,9 @@ namespace Calculator7SegTests
 			catch (InvalidCalculationException&) {
 				Assert::IsTrue(true);
 			}
+			catch (...) {
+				Assert::IsTrue(true);
+			}
 
 			//does not work
 			//Assert::ExpectException<InvalidCalculationException>(calculator.calc(data));
@@ -95,25 +98,18 @@ namespace Calculator7SegTests
 			Assert::AreEqual(2.0, calculator.calc(data));
 		}
 
-		TEST_METHOD(LimitLong)
+		
+		TEST_METHOD(FloatNumber)
 		{
+			using namespace std::literals;
 			Calculator calculator;
-			Assert::AreEqual(8, (int)calculator.limitTo8(9999999999).length());
+			Assert::AreEqual("99.45"s, calculator.roundToPercision2(99.454534545));
 		}
-		TEST_METHOD(LimitShort)
+		TEST_METHOD(NegativeDouble)
 		{
+			using namespace std::literals;
 			Calculator calculator;
-			Assert::AreEqual(8, (int)calculator.limitTo8(880).length());
-		}
-		TEST_METHOD(LimitFloat)
-		{
-			Calculator calculator;
-			Assert::AreEqual(8, (int)calculator.limitTo8(99.454534545).length());
-		}
-		TEST_METHOD(LimitNegativeDouble)
-		{
-			Calculator calculator;
-			Assert::AreEqual(8, (int)calculator.limitTo8(-99.454534545).length());
+			Assert::AreEqual("-99.45"s, calculator.roundToPercision2(-99.454534545));
 		}
 	};
 }

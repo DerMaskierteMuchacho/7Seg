@@ -13,6 +13,6 @@ class AsciiGenerator {
 private:
 	std::string createStringFromArray(std::vector<std::vector<std::string>>) const;
 public:
-	std::string intToAsciiString(std::string) const;
+	std::string numberStringToAsciiString(std::string) const;
 	std::string getErrorString() const;
 };

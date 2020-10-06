@@ -22,5 +22,5 @@ private:
 
 public:
 	double calc(struct CalcData&) const;
-	std::string limitTo8(double const) const;
+	std::string roundToPercision2(double const) const;
 };

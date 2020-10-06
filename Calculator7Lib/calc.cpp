@@ -42,6 +42,17 @@ double Calculator::calc(struct CalcData& data) const {
 	return result;
 }
 
-std::string Calculator::limitTo8(double const number) const {
-	return std::to_string(number).substr(0, 8);
+std::string Calculator::roundToPercision2(double const number) const {
+	std::ostringstream oStrStream;
+	oStrStream << std::fixed << std::setprecision(2) << number;
+	std::string numberString = oStrStream.str();
+	if (*std::rbegin(numberString) == '0') {
+		numberString.erase(numberString.end() - 1);
+		if (*std::rbegin(numberString) == '0') {
+			numberString.erase(numberString.end() - 1);
+			if (*std::rbegin(numberString) == '.')
+				numberString.erase(numberString.end() - 1);
+		}
+	}
+	return numberString;
 }

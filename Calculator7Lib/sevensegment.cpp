@@ -25,8 +25,12 @@ std::string AsciiGenerator::createStringFromArray(std::vector<std::vector<std::s
 	return output;
 }
 
-std::string AsciiGenerator::intToAsciiString(std::string input) const
+std::string AsciiGenerator::numberStringToAsciiString(std::string input) const
 {
+	if (input.length() > 8)
+	{
+		throw InvalidStringException();
+	}
 	std::vector<std::vector<std::string>> output; //list<string[]>
 
 	for (char digit : input)

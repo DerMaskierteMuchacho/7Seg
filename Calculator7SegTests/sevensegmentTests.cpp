@@ -14,52 +14,56 @@ namespace Calculator7SegTests
 		TEST_METHOD(IntegerOutputTest)
 		{
 			AsciiGenerator generator;
-			Assert::AreEqual(0, generator.intToAsciiString("8").compare(" --   \n|  |  \n --   \n|  |  \n --   \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("8").compare(" --   \n|  |  \n --   \n|  |  \n --   \n"));
 		}
 
 		TEST_METHOD(DoubleOutputTest)
 		{
 			AsciiGenerator generator;
-			Assert::AreEqual(0, generator.intToAsciiString("8.5").compare(" --          --   \n|  |        |     \n --          --   \n|  |     |     |  \n --          --   \n"));
-			Assert::AreEqual(0, generator.intToAsciiString("8,5").compare(" --          --   \n|  |        |     \n --          --   \n|  |     |     |  \n --          --   \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("8.5").compare(" --          --   \n|  |        |     \n --          --   \n|  |     |     |  \n --          --   \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("8,5").compare(" --          --   \n|  |        |     \n --          --   \n|  |     |     |  \n --          --   \n"));
 		}
 
-		TEST_METHOD(BigNumberTest)
+		TEST_METHOD(BigInputTest)
 		{
 			AsciiGenerator generator;
-			Assert::AreEqual(0, generator.intToAsciiString("12345.67890").compare("       --    --          --          --    --    --    --    --   \n   |     |     |  |  |  |           |        |  |  |  |  |  |  |  \n       --    --    --    --          --          --    --         \n   |  |        |     |     |     |  |  |     |  |  |     |  |  |  \n       --    --          --          --          --    --    --   \n"));
-
-			/*
-			"       --    --          --          --    --    --    --    --   "
-			"   |     |     |  |  |  |           |        |  |  |  |  |  |  |  "
-			"       --    --    --    --          --          --    --         "
-			"   |  |        |     |     |     |  |  |     |  |  |     |  |  |  "
-			"       --    --          --          --          --    --    --   "
-			*/
+			try
+			{
+				auto result = generator.numberStringToAsciiString("123456.89");
+				Assert::Fail();
+			}
+			catch (InvalidStringException&)
+			{
+				Assert::IsTrue(true);
+			}
+			catch (...)
+			{
+				Assert::IsTrue(false);
+			}
 		}
 
 		TEST_METHOD(NegativeNumberTest)
 		{
 			AsciiGenerator generator;
-			auto result = generator.intToAsciiString("-123");
+			auto result = generator.numberStringToAsciiString("-123");
 
-			Assert::AreEqual(0, generator.intToAsciiString("-123").compare("             --    --   \n         |     |     |  \n --          --    --   \n         |  |        |  \n             --    --   \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("-123").compare("             --    --   \n         |     |     |  \n --          --    --   \n         |  |        |  \n             --    --   \n"));
 		}
 
 		TEST_METHOD(DigitTest)
 		{
 			AsciiGenerator generator;
-			Assert::AreEqual(0, generator.intToAsciiString("-").compare("      \n      \n --   \n      \n      \n"));
-			Assert::AreEqual(0, generator.intToAsciiString("0").compare(" --   \n|  |  \n      \n|  |  \n --   \n"));
-			Assert::AreEqual(0, generator.intToAsciiString("1").compare("      \n   |  \n      \n   |  \n      \n"));
-			Assert::AreEqual(0, generator.intToAsciiString("2").compare(" --   \n   |  \n --   \n|     \n --   \n"));
-			Assert::AreEqual(0, generator.intToAsciiString("3").compare(" --   \n   |  \n --   \n   |  \n --   \n"));
-			Assert::AreEqual(0, generator.intToAsciiString("4").compare("      \n|  |  \n --   \n   |  \n      \n"));
-			Assert::AreEqual(0, generator.intToAsciiString("5").compare(" --   \n|     \n --   \n   |  \n --   \n"));
-			Assert::AreEqual(0, generator.intToAsciiString("6").compare(" --   \n|     \n --   \n|  |  \n --   \n"));
-			Assert::AreEqual(0, generator.intToAsciiString("7").compare(" --   \n   |  \n      \n   |  \n      \n"));
-			Assert::AreEqual(0, generator.intToAsciiString("8").compare(" --   \n|  |  \n --   \n|  |  \n --   \n"));
-			Assert::AreEqual(0, generator.intToAsciiString("9").compare(" --   \n|  |  \n --   \n   |  \n --   \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("-").compare("      \n      \n --   \n      \n      \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("0").compare(" --   \n|  |  \n      \n|  |  \n --   \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("1").compare("      \n   |  \n      \n   |  \n      \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("2").compare(" --   \n   |  \n --   \n|     \n --   \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("3").compare(" --   \n   |  \n --   \n   |  \n --   \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("4").compare("      \n|  |  \n --   \n   |  \n      \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("5").compare(" --   \n|     \n --   \n   |  \n --   \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("6").compare(" --   \n|     \n --   \n|  |  \n --   \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("7").compare(" --   \n   |  \n      \n   |  \n      \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("8").compare(" --   \n|  |  \n --   \n|  |  \n --   \n"));
+			Assert::AreEqual(0, generator.numberStringToAsciiString("9").compare(" --   \n|  |  \n --   \n   |  \n --   \n"));
 		}
 
 		TEST_METHOD(ErrorStringTest)
@@ -74,10 +78,10 @@ namespace Calculator7SegTests
 			AsciiGenerator generator;
 			try
 			{
-				auto result = generator.intToAsciiString("ASDF");
+				auto result = generator.numberStringToAsciiString("ASDF");
 				Assert::Fail();
 			}
-			catch (InvalidStringException ex)
+			catch (InvalidStringException&)
 			{
 				Assert::IsTrue(true);
 			}
