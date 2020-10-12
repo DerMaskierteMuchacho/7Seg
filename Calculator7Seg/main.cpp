@@ -1,5 +1,6 @@
-// Calculator7Seg.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/*	Testat 1 for Modul C++
+*	Michel Mirsayyah und Roman Spring
+*/
 
 #include <iostream>
 #include "../Calculator7Lib/pocketcalculator.h"

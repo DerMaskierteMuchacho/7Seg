@@ -1,3 +1,7 @@
+/*	Testat 1 for Modul C++
+*	Michel Mirsayyah und Roman Spring
+*/
+
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../Calculator7Lib/sevensegment.h"
@@ -32,7 +36,7 @@ namespace Calculator7SegTests
 				auto result = generator.numberStringToAsciiString("123456.89");
 				Assert::Fail();
 			}
-			catch (InvalidStringException&)
+			catch (InvalidStringException const&)
 			{
 				Assert::IsTrue(true);
 			}
@@ -81,7 +85,7 @@ namespace Calculator7SegTests
 				auto result = generator.numberStringToAsciiString("ASDF");
 				Assert::Fail();
 			}
-			catch (InvalidStringException&)
+			catch (InvalidStringException const&)
 			{
 				Assert::IsTrue(true);
 			}

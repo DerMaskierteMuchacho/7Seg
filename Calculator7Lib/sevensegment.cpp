@@ -1,3 +1,7 @@
+/*	Testat 1 for Modul C++
+*	Michel Mirsayyah und Roman Spring
+*/
+
 #include "sevensegment.h"
 #include <string>
 #include <vector>

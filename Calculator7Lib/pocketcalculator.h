@@ -1,3 +1,7 @@
+/*	Testat 1 for Modul C++
+*	Michel Mirsayyah und Roman Spring
+*/
+
 #pragma once
 #include "calc.h"
 #include <iosfwd>

@@ -1,3 +1,7 @@
+/*	Testat 1 for Modul C++
+*	Michel Mirsayyah und Roman Spring
+*/
+
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../Calculator7Lib/calc.h"
@@ -22,7 +26,7 @@ namespace Calculator7SegTests
 				calculator.calc(data);
 				Assert::Fail();
 			}
-			catch (InvalidCalculationException&) {
+			catch (InvalidCalculationException const&) {
 				Assert::IsTrue(true);
 			}
 			catch (...) {

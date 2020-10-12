@@ -1,3 +1,7 @@
+/*	Testat 1 for Modul C++
+*	Michel Mirsayyah und Roman Spring
+*/
+
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../Calculator7Lib/pocketcalculator.h"
@@ -142,7 +146,7 @@ namespace Calculator7SegTests
 				inputToData(data, input);
 				Assert::Fail();
 			}
-			catch (InvalidInputException&) {
+			catch (InvalidInputException const&) {
 				Assert::IsTrue(true);
 			}
 			//does not work
