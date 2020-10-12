@@ -167,8 +167,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AsciiGeneratorTests.h" />
-    <ClInclude Include="Calculator7SegTests.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>

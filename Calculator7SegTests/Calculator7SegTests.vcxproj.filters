@@ -32,11 +32,5 @@
     <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Calculator7SegTests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AsciiGeneratorTests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
